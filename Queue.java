@@ -21,12 +21,10 @@ public class Queue<E> {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
+            tail = newNode;
         } else {
-            Node current = head;
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = newNode;
+            tail.next = newNode;
+            tail = newNode;
         }
     }
 
@@ -67,6 +65,9 @@ public class Queue<E> {
     }
 
     public String toString() {
+        if(isEmpty()) {
+            return "Empty List";
+        }
         String result = "";
         Node current = head;
         while (current != null) {
