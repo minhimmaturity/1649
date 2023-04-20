@@ -17,14 +17,16 @@ public class Queue<E> {
         this.tail = null;
     }
 
-    public void enqueue(E data) {
+    public E enqueue(E data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
             tail = newNode;
+            return head.data;
         } else {
             tail.next = newNode;
             tail = newNode;
+            return tail.data;
         }
     }
 
@@ -38,6 +40,65 @@ public class Queue<E> {
             return current.data;
         }
 
+    }
+
+
+    public E addElementByIndex(int index, E data) {
+        Node newNode = new Node(data);
+        if(isEmpty()) {
+            head = newNode;
+            tail = newNode;
+            return newNode.data;
+        } else if(index > size()) {
+            Node current = head;
+            while(current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+            current = newNode;
+            // tail.next = newNode;
+            // tail = newNode;
+            return current.data;
+        } else if (index == 0) {
+            newNode.next = head;
+            head = newNode;
+            return head.data;
+        } else {
+            Node current = head;
+            for(int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
+            return current.data;
+        }
+    }
+
+    public E removeElementByIndex(int index) {
+        if(index < 0 || isEmpty()) {
+            throw new IllegalArgumentException("index must be positive");
+        } else if (index > size()) {
+            Node current = head;
+            while(current.next.next != null) {
+                current = current.next;
+            }
+            E x = current.next.data;
+            current.next = null;
+            return x;
+        } else if (index == 0) {
+            E x = head.data;
+            head = head.next;
+            head = null;
+            return x;
+        } else {
+            Node current = head;
+            for(int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            E x = current.next.data;
+            current.next = current.next.next;
+            return x;
+        }
     }
 
     public int size() {

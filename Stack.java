@@ -15,26 +15,15 @@ public class Stack<E> {
         this.head = null;
     }
 
-    public void add(E data) {
+    public E push(E data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
-        } else {
-            Node current = head;
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = newNode;
-        }
-    }
-
-    public void push(E data) {
-        Node newNode = new Node(data);
-        if (head == null) {
-            head = newNode;
+            return newNode.data;
         } else {
             newNode.next = head;
             head = newNode;
+            return head.data;
         }
     }
 
@@ -52,6 +41,10 @@ public class Stack<E> {
         }
     }
 
+    /**
+     * 
+     * @return top of the stack
+     */
     public E peek() {
         if (isEmpty()) {
             throw new RuntimeException("Empty List");
@@ -59,6 +52,10 @@ public class Stack<E> {
         return head.data;
     }
 
+    /**
+     * 
+     * @return the size of the stack
+     */
     public int size() {
         int count = 0;
         Node current = head;
@@ -69,6 +66,12 @@ public class Stack<E> {
         return count;
     }
 
+    /**
+     * @return check if the stack is empty or not,
+    *  return boolean value,
+    *
+    true is empty, false is not
+     */
     public boolean isEmpty() {
         if (size() == 0) {
             return true;

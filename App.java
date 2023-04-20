@@ -16,17 +16,20 @@ public class App {
             System.out.println("/////////////////////////");
 
             Queue<Integer> queue = new Queue<Integer>();
-            // queue.enqueue(3);
-            // queue.enqueue(2);
-            // queue.enqueue(5);
+            queue.enqueue(3);
+            queue.enqueue(2);
+            queue.enqueue(5);
             System.out.println("Queue: " + queue.toString());
 
-            System.out.println("Dequeue: " + queue.dequeue());
-            System.out.println("After dequeue: " + queue.toString());
-            System.out.println("Head: " + queue.head());
 
             queue.enqueue(10);
             System.out.println("After enqueue: " + queue.toString());
+
+            queue.addElementByIndex(1000, 11);
+            System.out.println("After add by index: " + queue.toString());
+            
+            System.out.println(queue.removeElementByIndex(1000));
+            System.out.println("After remove by index: " + queue.toString());
             // Queue queue1 = new Queue();
 
             // System.out.println("Pop: " + list.pop());
