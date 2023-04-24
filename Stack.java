@@ -15,15 +15,23 @@ public class Stack<E> {
         this.head = null;
     }
 
+    int Max = 20;
+
     public E push(E data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
             return newNode.data;
-        } else {
-            newNode.next = head;
-            head = newNode;
-            return head.data;
+        } else if (size() > Max) {
+            throw new RuntimeException("Stack Overflow");
+        }
+        else {
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+            return newNode.data;
         }
     }
 
@@ -35,9 +43,12 @@ public class Stack<E> {
             throw new RuntimeException("Empty List");
         } else {
             Node current = head;
-            head = head.next;
+            while (current.next.next != null) {
+                current = current.next;
+            }
+            E x = current.next.data;
             current.next = null;
-            return current.data;
+            return x;
         }
     }
 
@@ -49,7 +60,11 @@ public class Stack<E> {
         if (isEmpty()) {
             throw new RuntimeException("Empty List");
         }
-        return head.data;
+        Node current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current.data;
     }
 
     /**

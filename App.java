@@ -6,6 +6,8 @@ public class App {
             list.push(1);
             list.push(2);
             list.push(3);
+            System.out.println(list.push(4));
+            System.out.println("top: " + list.peek());
             System.out.println("Stack: " + list.toString());
             System.out.println("Size: " + list.size());
 
@@ -19,17 +21,16 @@ public class App {
             queue.enqueue(3);
             queue.enqueue(2);
             queue.enqueue(5);
+            System.out.println("Number previous enqueue: " + queue.enqueue(4));
             System.out.println("Queue: " + queue.toString());
 
 
             queue.enqueue(10);
             System.out.println("After enqueue: " + queue.toString());
 
-            queue.addElementByIndex(1000, 11);
-            System.out.println("After add by index: " + queue.toString());
-            
-            System.out.println(queue.removeElementByIndex(1000));
-            System.out.println("After remove by index: " + queue.toString());
+            System.out.println("Dequeue: " + queue.dequeue());
+            System.out.println("Queue after dequeue: " + queue.toString());
+
             // Queue queue1 = new Queue();
 
             // System.out.println("Pop: " + list.pop());
