@@ -19,11 +19,11 @@ public class Queue<E> {
         this.last = null;
     }
 
-    public int max = 20;
+    public int Max = 20;
 
     public E enqueue(E data) {
         Node newNode = new Node(data);
-        if(size() > max) {
+        if(isFull()) {
             throw new RuntimeException("Queue Overflow");
         } else if (last == null) {
             last = newNode;
@@ -71,6 +71,13 @@ public class Queue<E> {
             throw new RuntimeException("Empty List");
         }
         return first.data;
+    }
+
+    public boolean isFull() {
+        if(size() > Max) {
+            return true;
+        }
+        return false;
     }
 
     public String toString() {

@@ -22,7 +22,7 @@ public class Stack<E> {
         if (head == null) {
             head = newNode;
             return newNode.data;
-        } else if (size() > Max) {
+        } else if (isFull()) {
             throw new RuntimeException("Stack Overflow");
         }
         else {
@@ -89,6 +89,13 @@ public class Stack<E> {
      */
     public boolean isEmpty() {
         if (size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isFull() {
+        if(size() > Max) {
             return true;
         }
         return false;
